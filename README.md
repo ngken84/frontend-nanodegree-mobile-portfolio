@@ -51,3 +51,30 @@ In the for loop, the following code forces layout to be run repeatedly:
 ```
 To reduce the amount of layout thrashing, this code is pulled out of the loop and only performed once. 
 
+####2. Optimize Resizing Cookies
+There is a lot of layout thrashing that occurs during this method. 
+
+```bash
+  for(var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
+    var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
+    var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
+    document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth; 
+  }
+```
+This is fixed by updating the determinDX function to take width variables that are pulled out of the for loop. 
+
+```bash
+  var windowwidth = document.getElementById("randomPizzas").offsetWidth;
+  var allRandomPizzaContainers = document.getElementsByClassName("randomPizzaContainer");
+  var myOffSetWidth = allRandomPizzaContainers[0].offsetWidth;
+  for(var i = 0, x = allRandomPizzaContainers.length; i < x; i++) {
+    var dx = determineDx(windowwidth, myOffSetWidth, size);
+    var newwidth = (myOffSetWidth + dx) + 'px';
+    allRandomPizzaContainers[i].style.width = newwidth;
+  }
+```
+
+Instead of passing the element to the function determineDx, the important values to the functions are gathered outside the for loop to prevent layout thrashing.  
+
+
+
