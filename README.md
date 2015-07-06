@@ -41,13 +41,13 @@ There are two places that need to be fixed during the optimization. First, ensur
     will-chnage : transform;
     transform : translateZ(0);
   }
-```bash
+```
 
 Next we have to deal with the layout thrashing in the update code. The function that updates the location of the cookies is the updatePositions function
 
 In the for loop, the following code forces layout to be run repeatedly:
 ```bash
   var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-```bash
+```
 To reduce the amount of layout thrashing, this code is pulled out of the loop and only performed once. 
 
