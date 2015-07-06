@@ -76,5 +76,20 @@ This is fixed by updating the determinDX function to take width variables that a
 
 Instead of passing the element to the function determineDx, the important values to the functions are gathered outside the for loop to prevent layout thrashing.  
 
+####Part 3 Run the Project
 
+1. To inspect the site on your phone, you can run a local server
+
+  ```bash
+  $> cd /path/to/your-project-folder
+  $> python -m SimpleHTTPServer 8080
+  ```
+
+1. Open a browser and visit localhost:8080
+1. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely.
+
+  ``` bash
+  $> cd /path/to/your-project-folder
+  $> ngrok 8080
+  ```
 
