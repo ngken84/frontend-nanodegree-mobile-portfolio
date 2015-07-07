@@ -510,12 +510,17 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
+  //Dynamically calculate the columns based on the width of the screen.
+  var screenWidth = Math.max(window.innerWidth, screen.width);
+  var cols = Math.min(parseInt(screenWidth/200 * 1.2), 8);
   var s = 256;
   var movingPizzas = document.getElementById("movingPizzas1");
   var elem;
-  //Generate 100 pizzas and append them to the movingPizzas1 element.
-  for (var i = 0; i < 100; i++) {
+  // Determine screen height. window.innerHeight will give a more accurate height of smart phone screens
+  var screenHeight = Math.max(window.innerHeight, screen.height);
+  // Get cookie count based on height of screen;
+  var cookieCount = (screenHeight/s * cols) + cols;
+  for (var i = 0; i < cookieCount; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
