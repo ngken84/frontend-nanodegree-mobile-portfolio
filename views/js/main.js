@@ -513,6 +513,10 @@ document.addEventListener('DOMContentLoaded', function() {
   //Dynamically calculate the columns based on the width of the screen.
   var screenWidth = Math.max(window.innerWidth, screen.width);
   var cols = Math.min(parseInt(screenWidth/200 * 1.2), 8);
+  if(cols % 2 === 1)
+  {
+    cols++;
+  }
   var s = 256;
   var movingPizzas = document.getElementById("movingPizzas1");
   var elem;
